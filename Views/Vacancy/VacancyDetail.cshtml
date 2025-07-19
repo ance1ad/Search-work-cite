@@ -1,0 +1,95 @@
+﻿@model Vacancy
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<div class="main-container">
+    <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <style>
+                    p {
+                        font-size: 1.25rem;
+                        color: #000000
+                    }
+
+                    a {
+                        font-size: 1.25rem;
+                        color: #ffffff
+                    }
+
+                    h2 {
+                        font-size: 2rem;
+                        color: #000099
+                    }
+
+                    body::before {
+                        content: "";
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 150%;
+                        background: url('@Url.Content("~/photo/vacancyDetail.jpg")') center center fixed;
+                        background-size: cover;
+                        z-index: -1; /* Размещаем под основным содержимым */
+                        filter: blur(3px); /* Размытие изображения */
+                    }
+
+                    /* Ваш остальной стиль */
+                    body {
+                        background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+                        color: #ffffff;
+                    }
+
+                    .rounded-custom {
+                        border-radius: 100px;
+                        align-self: cener;
+                    }
+                    }
+                </style>
+
+                <a href="https://localhost:7161/Vacancy/%D0%A1%D0%BE%D0%B8%D1%81%D0%BA%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC">⬅️</a>
+            </nav>
+        </div>
+
+    </nav>
+    <section class="bg-white space-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 mb-3 mb-sm-0">
+                    <img alt="Image" src="@Model.Image" class="rounded-custom img-fluid" />
+                </div>
+                <div class="col-lg-4 d-flex flex-column justify-content-between mr-auto ml-auto">
+                    <div>
+                        <strong class="d-inline-block mb-2 text-primary display-6 text-center">Вакансия: "Разработчик на @Model.ProgrammingLanguage"</strong>
+                        <h2 class="lead mb-3">город: @Model.Address.City</h2>
+                        <p class="lead mb-3"> @Model.Description</p>
+                        <h2 class="lead mb-3">необходимый стаж (лет): @Model.WorkExpirienceAge</h2>
+                        <p class="lead mb-3"> почта для резюме: @Model.Email</p>
+                        @if (@Model.DistanceWork == null)
+                        {
+                            <p class="lead mb-3">Возможность работать удаленно: не указано</p>
+                        }
+                        else
+                        {
+                            <p class="lead mb-3">Возможность работать удаленно: @Model.DistanceWork</p>
+                        }                        
+                        <h3 class="mb-0">
+                            <a class="text-dark">Зарпалата: @Model.Salary руб.</a>
+                        </h3>
+                        <div style="margin-bottom: 15px;"></div>
+                        @if (@Model.CompanyInfo != null)
+                        {
+                             <a href="@Model.CompanyInfo" class="btn btn-outline-primary btn-lg">Сайт компании</a>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</html>

@@ -1,0 +1,81 @@
+﻿﻿@using FindWorkApp.ViewModels
+@model RegisterViewModel
+
+
+
+<style>
+    body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 150%;
+        background: url('@Url.Content("~/photo/vacancyDetail.jpg")');
+        background-size: cover;
+        z-index: -1; /* Размещаем под основным содержимым */
+        filter: blur(0px); /* Размытие изображения */
+    }
+
+    /* Ваш остальной стиль */
+    body {
+        background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+        color: #000000;
+        overflow-x: hidden;
+    }
+</style>
+</style>
+
+
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 text-center">
+                <p class="display-3">Регистрация нового аккаунта</p>
+            </div>
+        </div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Извините!</b> @TempData["Error"] </span>
+            </div>
+        }
+
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form asp-action="Register" class="my-4">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label asp-for="EmailAddress" class="control-label">Email</label>
+                                <input asp-for="EmailAddress" class="form-control" placeholder="Введите ваш email">
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Password" class="control-label">Пароль</label>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Введите пароль" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ConfirmPassword" class="control-label">Подтверждение пароля</label>
+                                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Подтвердите пароль" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-end">
+                                <button type="submit" class="btn btn-success mr-2">Регистрация</button>
+                                <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Отмена</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+    </div>
+</div>

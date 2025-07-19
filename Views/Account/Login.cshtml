@@ -1,0 +1,69 @@
+﻿@using FindWorkApp.ViewModels
+@model LoginViewModel
+
+
+<style>
+    body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 150%;
+        background: url('@Url.Content("~/photo/vacancyDetail.jpg")');
+        background-size: cover;
+        z-index: -1; /* Размещаем под основным содержимым */
+        filter: blur(0px); /* Размытие изображения */
+    }
+
+    /* Ваш остальной стиль */
+    body {
+        background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+        color: #000000;
+        overflow-x: hidden;
+    }
+</style>
+
+
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+        <p class="display-3">Вход в аккаунт</p>
+    </div>
+</div>
+
+        @if(TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Извините!</b> @TempData["Error"]</span>
+            </div>
+        }
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form asp-action="Login" class="my-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label">Электронная Почта</label>
+                        <input asp-for="EmailAddress" class="form-control" placeholder="Введите вашу почту">
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label">Пароль</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Введите ваш пароль" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Войти</button>
+                        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

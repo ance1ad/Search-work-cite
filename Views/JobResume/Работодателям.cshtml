@@ -1,0 +1,161 @@
+﻿@model IEnumerable<JobResume>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 350px;
+            left: 660px;
+            width: 100%;
+            height: 100%;
+            background: url('@Url.Content("~/photo/resumeBack.jpg")');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center right; /* Сдвигаем вправо */
+            z-index: -1;
+            filter: blur(0px);
+            transform: scale(2); /* Увеличиваем масштаб */
+        }
+
+        body {
+            background: #77acf1;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+
+        .text-center {
+            text-align: center;
+        }
+
+        .jumbotron {
+            background: linear-gradient(to center, #4b6078, #066af5);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 550px;
+        }
+
+
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .row h2 {
+            color: #ffffff; /* Белый цвет текста */
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+
+        
+
+        .resume-section {
+            background-color: ;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 15px;
+        }
+
+        .resume-heading {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .resume-content {
+            font-size: 16px;
+        }
+
+        .album {
+            padding-top: 0; /* или другое значение */
+            padding-bottom: 0; /* или другое значение */
+            background-color: transparent; /* или другое значение */
+        }
+
+        .container {
+            width: 100%; /* или другое значение */
+            padding-right: 0; /* или другое значение */
+            padding-left: 0; /* или другое значение */
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        
+
+    </style>
+</head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+<body>
+
+    <div class="background-container text-center p-0">
+        <div class="jumbotron bg-primary text-white mb-4">
+            <h1 class="display-5 font-weight-bold">Находите работников со всей страны !</h1>
+            
+        </div>
+    </div>
+
+
+
+    <div style="margin-bottom: 20px;"></div>
+
+
+    <main role="main">
+        <div class="container">
+            @foreach (var item in Model)
+            {
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card border-primary rounded-3">
+                            <div class="card-body">
+                                <a class="text-primary display-6" href="https://localhost:7161/JobResume/JobResumeDetail/@item.Id">@item.CareerObjective</a>
+                                <li>@item.Date</li>
+
+                                <p class="card-text">
+                                    @item.Description, з/п @item.Salary руб.
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Город: @item.Address.City, Образование: @item.Education, Стаж работы (лет): @item.WorkExpirience</li>
+                            </ul>
+                            <div class="card-footer">
+                                <a href="https://localhost:7161/JobResume/JobResumeDetail/@item.Id" class="btn btn-primary mr-2">Подробнее</a>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                {
+                                    <a href="https://localhost:7161/JobResume/Edit/@item.Id" class="btn btn-warning mr-2">Редактировать</a>
+                                    <a href="https://localhost:7161/JobResume/Delete/@item.Id" class="btn btn-danger">Удалить</a>
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 50px;"></div>
+            }
+        </div>
+    </main>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-U7UqvuXlNghF7RxrDfopOnuMfovlbcQByhZVnSBAiKGvYx3np9WSJDR4Va7Twc6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+

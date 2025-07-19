@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 150%;
+            background:  url('@Url.Content("~/photo/mainPage.jpg")') center center fixed;
+            background-size: cover;
+            z-index: -1; /* Размещаем под основным содержимым */
+            filter: blur(8px); /* Размытие изображения */
+        }
+
+        /* Ваш остальной стиль */
+        body {
+            background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+
+
+        .text-center {
+            text-align: center;
+        }
+
+        .jumbotron {
+            background: linear-gradient(to right, #000000, #18273d);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 550px;
+        }
+
+
+
+
+}
+
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Стили для заголовков с классом h2 внутри .row */
+        .row h2 {
+            color: #ffffff; /* Белый цвет текста */
+        }
+
+        p {
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+<body>
+
+    <div class="background-container text-center p-0">
+        <div class="jumbotron bg-primary text-white mb-4">
+            <h1 class="display-2 font-weight-bold">Code Career Search</h1>
+            <p class="lead font-italic">Портал по поиску ваканси</p>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <p>Войдите или зарегестрируйтесь для добавления вакансий или резюме</p>
+            }
+        </div>
+    </div>
+
+
+
+    <div style="margin-bottom: 20px;"></div>
+
+
+    </div>
+    <div class="container marketing">
+
+        <div class="row">
+            <div style="margin-bottom: 70px;"></div>
+            <div class="col-lg-4 text-center mb-4">
+                <a href="https://localhost:7161/Vacancy/%D0%A1%D0%BE%D0%B8%D1%81%D0%BA%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC">
+                    <img class="rounded-circle" src="https://sun9-45.userapi.com/impg/kWB4ghdhxM8sGieRwSWm1OeNkbSZg-zacUOjHA/I-R4fn6ebBQ.jpg?size=758x575&quality=96&sign=8ee601dc42810491f979852355d939cb&type=album" alt="Generic placeholder image" width="270" height="270">
+                    <h2>Поиск работы</h2>
+                </a>
+                <p class="mb-4">Здесь вы можете найти работу в сфере IT</p>
+            </div>
+
+            <div class="col-lg-4 text-center mb-4">
+                <a href="https://localhost:7161/JobResume/%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC">
+                    <img class="rounded-circle" src="https://sun9-64.userapi.com/impg/AcndKz0sgOOYW-fwDFHdv9WItqG6RdoR_I1fXA/CpTFHrJtOz4.jpg?size=703x603&quality=96&sign=c22cb71f98008b759465b1fb1a98a2e6&type=album" alt="Generic placeholder image" width="270" height="270">
+                    <h2>Поиск сотрудников</h2>
+                </a>
+                <p class="mb-4">Находите сотрудников по всей стране</p>
+            </div>
+
+            <div class="col-lg-4 text-center mb-4">
+                <a href="https://localhost:7161/Company/Company">
+                    <img class="rounded-circle" src="https://sun9-4.userapi.com/impg/qkpPf2OVxCvTNnWhYK6f0OWIWWxWB6lPavJ5mg/BaKQSIa6bwY.jpg?size=868x654&quality=96&sign=ac47e80774b3d9862941986d3a39fb63&type=album" alt="Generic placeholder image" width="270" height="270">
+                    <h2>Компании</h2>
+                </a>
+                <p class="mb-4">Узнавайте информацию о компаниях в вашем городе</p>
+            </div>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-U7UqvuXlNghF7RxrDfopOnuMfovlbcQByhZVnSBAiKGvYx3np9WSJDR4Va7Twc6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+

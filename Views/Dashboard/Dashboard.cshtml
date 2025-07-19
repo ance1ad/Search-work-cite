@@ -1,0 +1,105 @@
+﻿﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+
+@model FindWorkApp.ViewModels.DashboardViewModel
+<style>
+    body::before {
+        content: "";
+        position: fixed;
+        top: 350px;
+        left: 660px;
+        width: 100%;
+        height: 100%;
+        background: url('@Url.Content("~/photo/VacancyDetail.jpg")');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center right; /* Сдвигаем вправо */
+        z-index: -1;
+        filter: blur(0px);
+        transform: scale(2); /* Увеличиваем масштаб */
+    }
+
+    body {
+        background: #77acf1;
+        color: #000000;
+        overflow-x: hidden;
+    }
+
+    .bold-text {
+        font-weight: bold;
+    }
+</style>
+<div class="text-center mb-4">
+        <a type="button" class="btn btn-outline-primary btn-lg" asp-area="" asp-controller="JobResume" asp-action="Create">Создать резюме</a>
+        <a type="button" class="btn btn-outline-primary btn-lg" asp-area="" asp-controller="Vacancy" asp-action="Create">Создать Вакансию</a>
+        @*<a type="button" class="btn btn-outline-primary btn-lg" asp-area="" asp-controller="Dashboard" asp-action="EditUserProfile">Редактировать профиль</a>*@
+    </div>
+
+</div>
+<div class="container">
+    <div class="container text-center">
+        <h2 class="display-2 fw-bold mb-4">Ваши вакансии</h2>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        @foreach (var item in Model.Vacancies)
+        {
+            <div class="col-md-4">
+                <div class="card mb-2 box-shadow">
+                    <a href="@Url.Action("VacancyDetail", "Vacancy", new { id = item.Id })">
+                        <img class="card-img-top" src="@item.Image" width="420" height="330" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text text-center bold-text">Разработчик на @item.ProgrammingLanguage</p>
+                        <p class="card-text">@item.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a type="btn btn-success" asp-controller="Vacancy" asp-action="VacancyDetail" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <a asp-controller="Vacancy" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                                    <a asp-controller="Vacancy" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Удалить</a>
+                                }
+                            </div>
+                            <small class="text-muted">@item.Date</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="container text-center">
+        <h2 class="display-2 fw-bold mb-4">Ваши резюме</h2>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @foreach (var item in Model.Resumes)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <a href="@Url.Action("JobResumeDetail", "JobResume", new { id = item.Id })">
+                        <img class="card-img-top" src="@item.Image" width="420" height="330" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text text-center bold-text">@item.CareerObjective</p>
+                        <p class="card-text">@item.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a type="btn btn-success" asp-controller="JobResume" asp-action="JobResumeDetail" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <a asp-controller="JobResume" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                                    <a asp-controller="JobResume" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Удалить</a>
+                                }
+                            </div>
+                            <small class="text-muted">@item.Date</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

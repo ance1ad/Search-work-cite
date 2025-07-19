@@ -1,0 +1,124 @@
+﻿@using FindWorkApp.ViewModels;
+@model CreateVacancyViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .text-danger {
+        color: red;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 150%;
+        background: url('@Url.Content("~/photo/vacancyDetail.jpg")');
+        background-size: cover;
+        z-index: -1; /* Размещаем под основным содержимым */
+        filter: blur(0px); /* Размытие изображения */
+    }
+
+    /* Ваш остальной стиль */
+    body {
+        background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+        color: #000000;
+        overflow-x: hidden;
+    }
+</style>
+
+<form method="post" asp-action="Create">
+    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId"></input>
+    <div class="section">
+        <h3>Создание вакансии</h3>
+
+        <div class="form-group">
+            <label asp-for="ProgrammingLanguage">Технология</label>
+            <input asp-for="ProgrammingLanguage" class="form-control" placeholder="Введите язык программирования или фреймворк">
+            <span asp-validation-for="ProgrammingLanguage" class="text-danger"></span>
+        </div>
+
+    <div class="form-group">
+        <label asp-for="WorkExpirienceAge">Стаж работы</label>
+        <input asp-for="WorkExpirienceAge" class="form-control" placeholder="Введите необходимый стаж работы, если не требуется введите 0">
+        <span asp-validation-for="WorkExpirienceAge" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Salary">Зарпалата</label>
+        <input asp-for="Salary" class="form-control" placeholder="Введите заработную плату">
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Описание</label>
+        <input asp-for="Description" class="form-control" placeholder="Введите описание, необходимые навыки, вид работ">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DistanceWork">Удаленная работа</label>
+            <input asp-for="DistanceWork" class="form-control" placeholder="Введите информацию о возможностях удаленной работы">
+            <span asp-validation-for="DistanceWork" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CompanyInfo">Сайт компании</label>
+            <input asp-for="CompanyInfo" class="form-control" placeholder="Введите информацию о компании">
+            <span asp-validation-for="CompanyInfo" class="text-danger"></span>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Address.City">Город</label>
+        <input asp-for="Address.City" class="form-control" placeholder="Введите город">
+        <span asp-validation-for="Address.City" class="text-danger"></span>
+    </div>
+
+
+
+    <div class="form-group">
+        <label asp-for="Email">Почта</label>
+        <input asp-for="Email" class="form-control" placeholder="Введите почту для заявок">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image">Изображение</label>
+        <input asp-for="Image" class="form-control" placeholder="Введите ссылку на изображение">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    
+
+
+
+    <button type="submit" class="btn btn-primary">Готово</button>
+</form>

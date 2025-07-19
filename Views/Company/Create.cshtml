@@ -1,0 +1,104 @@
+﻿@model Company
+@*
+    добавить компанию
+*@
+@{
+}
+<style>
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .text-danger {
+        color: red;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: -40%;
+        left: -55%;
+        width: 200%;
+        height: 150%;
+        background: url('@Url.Content("~/photo/evilCorp.jpg")');
+        background-size: cover;
+        z-index: -1; /* Размещаем под основным содержимым */
+        filter: blur(5px); /* Размытие изображения */
+    }
+
+    /* Ваш остальной стиль */
+    body {
+        background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+        color: #000000;
+        overflow-x: hidden;
+    }
+</style>
+
+
+<form method="post" asp-action="Create">
+    <div class="section">
+        <h3>Добавление компании</h3>
+        <div class="form-group">
+            <label asp-for="Name">Название компании</label>
+            <input asp-for="Name" class="form-control" placeholder="Введите название компании">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Type">Тип</label>
+            <input asp-for="Type" class="form-control" placeholder="Введите тип компании">
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Count">Численность персонала</label>
+            <input asp-for="Count" class="form-control" placeholder="Введите численность пресонала в компании">
+            <span asp-validation-for="Count" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description">Описание</label>
+            <input asp-for="Description" class="form-control" placeholder="Описание компании">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Cities">Города</label>
+            <input asp-for="Cities" class="form-control" placeholder="Введите города в которых распологается данная компания">
+            <span asp-validation-for="Cities" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OfficialSite">Сайт</label>
+            <input asp-for="OfficialSite" class="form-control" placeholder="Введите официальный сайт компании">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Image">Изображение</label>
+            <input asp-for="Image" class="form-control" placeholder="Добавьте ссылку на логотип или фото компании">
+        </div>
+
+        
+
+
+
+        <button type="submit" class="btn btn-primary">Готово</button>
+</form>
+

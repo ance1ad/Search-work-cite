@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model JobResume
+
+
+<style>
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .text-danger {
+        color: red;
+    }
+
+    body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 150%;
+        background: url('@Url.Content("~/photo/vacancyDetail.jpg")');
+        background-size: cover;
+        z-index: -1; /* Размещаем под основным содержимым */
+        filter: blur(5px); /* Размытие изображения */
+    }
+
+    /* Ваш остальной стиль */
+    body {
+        background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+        color: #000000;
+        overflow-x: hidden;
+    }
+</style>
+
+<h1>Вы точно хотите удалить данное резюме ?</h1>
+
+<form method="post" asp-action="Delete" enctype="multipart/form-data">
+    <input type="hidden" value="AddressId" id="AddressId" />
+    <div class="section">
+        <div class="form-group">
+            <label asp-for="FullName">ФИО</label>
+            <input asp-for="FullName" class="form-control" placeholder="Введите ваше ФИО">
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Age">Возраст</label>
+            <input asp-for="Age" class="form-control" placeholder="Введите ваш возраст">
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="CareerObjective">Специальность</label>
+            <input asp-for="CareerObjective" class="form-control" placeholder="Введите вашу специальность">
+            <span asp-validation-for="CareerObjective" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Salary">Зарплата</label>
+            <input asp-for="Salary" class="form-control" placeholder="Введите желаемую заработную плату">
+            <span asp-validation-for="Salary" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="WorkExpirience">Стаж</label>
+            <input asp-for="WorkExpirience" class="form-control" placeholder="Сколько вы проработали лет в данной сфере">
+            <span asp-validation-for="WorkExpirience" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Education">Образование</label>
+            <input asp-for="Education" class="form-control" placeholder="Введите тип полученного образования и место">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description">Дополнительные сведения</label>
+            <input asp-for="Description" class="form-control" placeholder="Введите дополнительные сведения о вас, охарактеризуйте себя">
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Телефон</label>
+            <input asp-for="PhoneNumber" class="form-control" placeholder="Введите телефонный номер">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">Электронная почта</label>
+            <input asp-for="Email" class="form-control" placeholder="Введите вашу почту">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address.City">Город</label>
+            <input asp-for="Address.City" class="form-control" placeholder="Введите ваш город">
+            <span asp-validation-for="Address.City" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Image">Ваша фотография</label>
+            <input asp-for="Image" class="form-control" placeholder="Добавьте ссылку на ваше фото">
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Gender">Пол</label>
+            <div>
+                <label>
+                    <input asp-for="Gender" type="radio" value="Мужской" /> Мужской
+                </label>
+                <label>
+                    <input asp-for="Gender" type="radio" value="Женский" /> Женский
+                </label>
+            </div>
+        </div>
+</form>
+<div class="form-group">
+    <form action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Подтвердить удаление" class="btn btn-danger float-right mt-3" />
+    </form>
+</div>

@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Company>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 150%;
+            background: url('@Url.Content("~/photo/evilCorp.jpg")') center center fixed;
+            background-size: cover;
+            z-index: -1; /* Размещаем под основным содержимым */
+            filter: blur(3px); /* Размытие изображения */
+        }
+
+        /* Ваш остальной стиль */
+        body {
+            //background: #77acf1; /* Фон с цветом, если изображение не загрузится */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .rounded-custom {
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #000099
+        }
+
+
+        .text-center {
+            text-align: center;
+        }
+
+        .jumbotron {
+            background: linear-gradient(to right, #6DB2EF, #004786);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 550px;
+        }
+
+        }
+
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Стили для заголовков с классом h2 внутри .row */
+        .row h2 {
+            color: #ffffff; /* Белый цвет текста */
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #000000
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+<body>
+
+    <div class="background-container text-center p-0">
+        <div class="jumbotron bg-primary text-white mb-4">
+            <h1 class="display-5 font-weight-bold">Компании</h1>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row mb-2">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-12">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250 border-primary rounded">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <a class="text-primary display-6" href="@item.OfficialSite">@item.Name</a>
+                            <h3 class="mb-0">
+                                <a class="text-dark">города: @item.Cities</a>
+                            </h3>
+                            <p class="card-text mb-auto">@item.Description </p>
+                            <p class="card-text mb-auto">тип: @item.Type </p>
+                            <p class="card-text mb-auto">Количество сотрудников: @item.Count</p>
+                            <div class="card-footer">
+                                <a href="@item.OfficialSite" class="btn btn-primary mr-2">Подробнее</a>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                {
+                                    <a href="https://localhost:7161/Company/Edit/@item.Id" class="btn btn-warning mr-2">Редактировать</a>
+                                    <a href="https://localhost:7161/Company/Delete/@item.Id" class="btn btn-danger">Удалить</a>
+                                }
+                                
+                            </div>
+                        </div>
+
+                        <img class="card-img-right flex-auto d-none d-md-block rounded-custom align-self-center" src="@item.Image" alt="Card image cap" style="width: 250px; height: 200px;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px;"></div>
+            }
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div style="margin-bottom: 20px;"></div>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-U7UqvuXlNghF7RxrDfopOnuMfovlbcQByhZVnSBAiKGvYx3np9WSJDR4Va7Twc6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
